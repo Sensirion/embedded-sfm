@@ -30,7 +30,24 @@
  */
 
 #include "sfm3003.h"
+#include "sensirion_i2c.h"
+#include <stdio.h>
 
 int main() {
+
+    const char* driver_version = sfm_common_get_driver_version();
+    if (driver_version) {
+        printf("SGPC3 driver version %s\n", driver_version);
+    } else {
+        printf("fatal: Getting driver version failed\n");
+        return -1;
+    }
+
+    /* Initialize I2C bus */
+    sensirion_i2c_init();
+
+    while (sfm3003_probe()) {
+        printf("SFM sensor probing failed\n");
+    }
     return 0;
 }
