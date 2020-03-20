@@ -30,8 +30,8 @@
  */
 
 #include "sfm_common.h"
-#include "sfm_git_version.h"
 #include "sensirion_common.h"
+#include "sfm_git_version.h"
 
 const char* sfm_common_get_driver_version(void) {
     return SFM_DRV_VERSION_STR;
