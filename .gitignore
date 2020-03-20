@@ -1,3 +1,6 @@
+# Genrated Files
+/sfm-common/sfm_git_version.c
+
 # Prerequisites
 *.d
 
