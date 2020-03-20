@@ -1,4 +1,4 @@
-drivers=
+drivers=sfm3003
 clean_drivers=$(foreach d, $(drivers), clean_$(d))
 release_drivers=$(foreach d, $(drivers), release/$(d))
 release_sample_projects=$(foreach s, $(sample-projects), release/$(s))

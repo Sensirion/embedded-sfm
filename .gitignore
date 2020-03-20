@@ -1,4 +1,7 @@
 # Genrated Files
+/release
+/sfm3003/sfm3003_example_usage
+/sfm3003/user_config.inc
 /sfm-common/sfm_git_version.c
 
 # Prerequisites
