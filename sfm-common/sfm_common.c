@@ -30,7 +30,12 @@
  */
 
 #include "sfm_common.h"
+#include "sfm_git_version.h"
 #include "sensirion_common.h"
+
+const char* sfm_common_get_driver_version(void) {
+    return SFM_DRV_VERSION_STR;
+}
 
 int16_t sfm_common_probe(uint8_t i2c_address) {
     uint16_t buf[6];
