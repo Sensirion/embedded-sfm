@@ -34,6 +34,8 @@
 
 #include "sensirion_arch_config.h"
 
+#define SFM_CMD_READ_PRODUCT_IDENTIFIER 0xE102
+
 /**
  * Detects if a sensor is connected by reading out the ID register.
  * If the sensor does not answer or if the answer is not the expected value,
