@@ -36,6 +36,8 @@
 
 #define SFM_GET_SERIAL_NUMBER 0xE102
 
+#define SFM_CMD_STOP_CONTINUOUS_MEASUREMENT 0x3FF9
+
 /**
  * Return the driver version
  * @return  Driver version string
@@ -51,5 +53,9 @@ const char* sfm_common_get_driver_version(void);
  */
 int16_t sfm_common_probe(uint8_t i2c_address);
 
+/**
+ * Stops a continuous measurement.
+ */
+int16_t sfm_common_stop_continuous_measurement(uint8_t i2c_address);
 
 #endif /* SFM_COMMON_H */
