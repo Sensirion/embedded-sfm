@@ -30,7 +30,9 @@
  */
 
 #include "sfm_common.h"
+#include "sensirion_common.h"
 
 int16_t sfm_common_probe(uint8_t i2c_address) {
-    return 0;
+    uint16_t buf[6];
+    return sensirion_i2c_read_cmd(i2c_address, SFM_GET_SERIAL_NUMBER, buf, 6);
 }
