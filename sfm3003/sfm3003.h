@@ -30,3 +30,14 @@
  */
 
 #include "sfm_common.h"
+
+#define SFM3003_I2C_ADDRESS 0x28
+
+/**
+ * Detects if a sensor is connected by reading out the ID register.
+ * If the sensor does not answer or if the answer is not the expected value,
+ * the test fails.
+ *
+ * @return 0 if a sensor was detected
+ */
+int16_t sfm3003_probe(void);

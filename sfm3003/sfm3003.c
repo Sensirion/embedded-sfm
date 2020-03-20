@@ -29,4 +29,8 @@
  * POSSIBILITY OF SUCH DAMAGE.
  */
 
+#include "sfm3003.h"
 
+int16_t sfm3003_probe(void) {
+    return sfm_common_probe(SFM3003_I2C_ADDRESS);
+}
