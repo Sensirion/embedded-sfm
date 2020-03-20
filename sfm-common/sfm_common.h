@@ -37,6 +37,12 @@
 #define SFM_GET_SERIAL_NUMBER 0xE102
 
 /**
+ * Return the driver version
+ * @return  Driver version string
+ */
+const char* sfm_common_get_driver_version(void);
+
+/**
  * Detects if a sensor is connected by reading out the ID register.
  * If the sensor does not answer or if the answer is not the expected value,
  * the test fails.
@@ -44,5 +50,6 @@
  * @return 0 if a sensor was detected
  */
 int16_t sfm_common_probe(uint8_t i2c_address);
+
 
 #endif /* SFM_COMMON_H */
