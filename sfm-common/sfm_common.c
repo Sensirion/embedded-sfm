@@ -41,3 +41,8 @@ int16_t sfm_common_probe(uint8_t i2c_address) {
     uint16_t buf[6];
     return sensirion_i2c_read_cmd(i2c_address, SFM_CMD_READ_PRODUCT_IDENTIFIER, buf, 6);
 }
+
+int16_t sfm_common_stop_continuous_measurement(uint8_t i2c_address) {
+    return sensirion_i2c_write_cmd(i2c_address,
+                                   SFM_CMD_STOP_CONTINUOUS_MEASUREMENT);
+}
