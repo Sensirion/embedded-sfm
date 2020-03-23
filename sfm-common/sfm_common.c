@@ -47,6 +47,19 @@ int16_t sfm_common_start_continuous_measurement(
     return sensirion_i2c_write_cmd(i2c_address, measurement_cmd);
 }
 
+int16_t sfm_common_read_measurement(uint8_t i2c_address, int16_t* flow,
+                                    int16_t* temperature, uint16_t* status) {
+    uint16_t buf[3] = {};
+    int16_t error = sensirion_i2c_read_words(i2c_address, buf, 3);
+    if (error) {
+        return error;
+    }
+    *flow = (int16_t)buf[0];
+    *temperature = (int16_t)buf[1];
+    *status = buf[2];
+    return 0;
+}
+
 int16_t sfm_common_stop_continuous_measurement(uint8_t i2c_address) {
     return sensirion_i2c_write_cmd(i2c_address,
                                    SFM_CMD_STOP_CONTINUOUS_MEASUREMENT);
