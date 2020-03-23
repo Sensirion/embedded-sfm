@@ -41,3 +41,8 @@
  * @return 0 if a sensor was detected
  */
 int16_t sfm3003_probe(void);
+
+/**
+ * Create a new SFM3003 instance
+ */
+SfmConfig sfm3003_create(void);

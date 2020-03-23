@@ -50,6 +50,10 @@ typedef enum {
     SFM_CMD_START_CONTINUOUS_MEASUREMENT_GAS_MIX_2 = 0x3646,
 } SfmCmdStartContinuousMeasurement;
 
+typedef struct {
+    uint8_t i2c_address;
+} SfmConfig;
+
 /**
  * Return the driver version
  * @return  Driver version string
@@ -69,17 +73,18 @@ int16_t sfm_common_probe(uint8_t i2c_address);
  * Starts a continuous measurement with the given gas configuration.
  */
 int16_t sfm_common_start_continuous_measurement(
-    uint8_t i2c_address, SfmCmdStartContinuousMeasurement measurement_cmd);
+    const SfmConfig* sfm_config,
+    SfmCmdStartContinuousMeasurement measurement_cmd);
 
 /**
  * Read results of a continuous measurement
  */
-int16_t sfm_common_read_measurement(uint8_t i2c_address, int16_t* flow,
+int16_t sfm_common_read_measurement(const SfmConfig* sfm_config, int16_t* flow,
                                     int16_t* temperature, uint16_t* status);
 
 /**
  * Stops a continuous measurement.
  */
-int16_t sfm_common_stop_continuous_measurement(uint8_t i2c_address);
+int16_t sfm_common_stop_continuous_measurement(const SfmConfig* sfm_config);
 
 #endif /* SFM_COMMON_H */
