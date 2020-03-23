@@ -39,7 +39,33 @@ const char* sfm_common_get_driver_version(void) {
 
 int16_t sfm_common_probe(uint8_t i2c_address) {
     uint16_t buf[6];
-    return sensirion_i2c_read_cmd(i2c_address, SFM_CMD_READ_PRODUCT_IDENTIFIER, buf, 6);
+    return sensirion_i2c_read_cmd(i2c_address, SFM_CMD_READ_PRODUCT_IDENTIFIER,
+                                  buf, 6);
+}
+
+int16_t sfm_common_read_product_identifier(uint8_t i2c_address,
+                                           uint32_t* product_number,
+                                           uint8_t (*serial_number)[8]) {
+    uint8_t buf[6 * 2];
+    int16_t error =
+        sensirion_i2c_write_cmd(i2c_address, SFM_CMD_READ_PRODUCT_IDENTIFIER);
+    if (error) {
+        return error;
+    }
+    error = sensirion_i2c_read_words_as_bytes(i2c_address, buf, 6);
+    if (error) {
+        return error;
+    }
+    if (product_number) {
+        *product_number = ((uint32_t)buf[0] << 24) + ((uint32_t)buf[1] << 16) +
+                          ((uint32_t)buf[2] << 8) + (uint32_t)buf[3];
+    }
+    if (serial_number) {
+        for (size_t i = 0; i < 8; ++i) {
+            (*serial_number)[i] = buf[i + 4];
+        }
+    }
+    return 0;
 }
 
 int16_t sfm_common_start_continuous_measurement(

@@ -70,6 +70,14 @@ const char* sfm_common_get_driver_version(void);
 int16_t sfm_common_probe(uint8_t i2c_address);
 
 /**
+ * Read the product identifier, consisting of a product number and a serial
+ * number.
+ */
+int16_t sfm_common_read_product_identifier(uint8_t i2c_address,
+                                           uint32_t* product_number,
+                                           uint8_t (*serial_number)[8]);
+
+/**
  * Starts a continuous measurement with the given gas configuration.
  */
 int16_t sfm_common_start_continuous_measurement(
