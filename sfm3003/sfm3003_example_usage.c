@@ -49,9 +49,23 @@ int main() {
         printf("SFM sensor probing failed\n");
     }
 
+    uint32_t product_number = 0;
+    uint8_t serial_number[8] = {};
+    int16_t error = sfm_common_read_product_identifier(
+        SFM3003_I2C_ADDRESS, &product_number, &serial_number);
+    if (error) {
+        printf("Failed to read product identifier\n");
+    } else {
+        printf("product: 0x%08x, serial: 0x", product_number);
+        for (size_t i = 0; i < 8; ++i) {
+            printf("%x", serial_number[i]);
+        }
+        printf("\n");
+    }
+
     SfmConfig sfm3003 = sfm3003_create();
 
-    int16_t error = sfm_common_stop_continuous_measurement(&sfm3003);
+    error = sfm_common_stop_continuous_measurement(&sfm3003);
     if (error) {
         printf("Failed to stop previous measurement\n");
     }
