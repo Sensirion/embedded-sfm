@@ -49,5 +49,25 @@ int main() {
     while (sfm3003_probe()) {
         printf("SFM sensor probing failed\n");
     }
+
+    int16_t error = sfm_common_stop_continuous_measurement(SFM3003_I2C_ADDRESS);
+    if (error) {
+        printf("Failed to stop previous measurement\n");
+    }
+
+    error = sfm_common_start_continuous_measurement(
+        SFM3003_I2C_ADDRESS, SFM_CMD_START_CONTINUOUS_MEASUREMENT_GAS0);
+    if (error) {
+        printf("Failed to start measurement\n");
+    }
+
+    for (;;) {
+        int16_t flow;
+        int16_t temperature;
+        uint16_t status;
+        error = sfm_common_read_measurement(SFM3003_I2C_ADDRESS, &flow,
+                                            &temperature, &status);
+        printf(" %4i %4i %04x\n", flow, temperature, status);
+    }
     return 0;
 }
