@@ -38,6 +38,18 @@
 
 #define SFM_CMD_STOP_CONTINUOUS_MEASUREMENT 0x3FF9
 
+typedef enum {
+    SFM_CMD_START_CONTINUOUS_MEASUREMENT_GAS0 = 0x3603,
+    SFM_CMD_START_CONTINUOUS_MEASUREMENT_GAS1 = 0x3608,
+    SFM_CMD_START_CONTINUOUS_MEASUREMENT_GAS2 = 0x3615,
+    SFM_CMD_START_CONTINUOUS_MEASUREMENT_GAS3 = 0x361E,
+    SFM_CMD_START_CONTINUOUS_MEASUREMENT_GAS4 = 0x3624,
+    SFM_CMD_START_CONTINUOUS_MEASUREMENT_GAS5 = 0x362F,
+    SFM_CMD_START_CONTINUOUS_MEASUREMENT_GAS_MIX_0 = 0x3632,
+    SFM_CMD_START_CONTINUOUS_MEASUREMENT_GAS_MIX_1 = 0x3639,
+    SFM_CMD_START_CONTINUOUS_MEASUREMENT_GAS_MIX_2 = 0x3646,
+} SfmCmdStartContinuousMeasurement;
+
 /**
  * Return the driver version
  * @return  Driver version string
@@ -52,6 +64,12 @@ const char* sfm_common_get_driver_version(void);
  * @return 0 if a sensor was detected
  */
 int16_t sfm_common_probe(uint8_t i2c_address);
+
+/**
+ * Starts a continuous measurement with the given gas configuration.
+ */
+int16_t sfm_common_start_continuous_measurement(
+    uint8_t i2c_address, SfmCmdStartContinuousMeasurement measurement_cmd);
 
 /**
  * Stops a continuous measurement.
