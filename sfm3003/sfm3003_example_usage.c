@@ -29,8 +29,8 @@
  * POSSIBILITY OF SUCH DAMAGE.
  */
 
-#include "sfm3003.h"
 #include "sensirion_i2c.h"
+#include "sfm3003.h"
 #include <stdio.h>
 
 int main() {
@@ -50,13 +50,15 @@ int main() {
         printf("SFM sensor probing failed\n");
     }
 
-    int16_t error = sfm_common_stop_continuous_measurement(SFM3003_I2C_ADDRESS);
+    SfmConfig sfm3003 = sfm3003_create();
+
+    int16_t error = sfm_common_stop_continuous_measurement(&sfm3003);
     if (error) {
         printf("Failed to stop previous measurement\n");
     }
 
     error = sfm_common_start_continuous_measurement(
-        SFM3003_I2C_ADDRESS, SFM_CMD_START_CONTINUOUS_MEASUREMENT_GAS0);
+        &sfm3003, SFM_CMD_START_CONTINUOUS_MEASUREMENT_GAS0);
     if (error) {
         printf("Failed to start measurement\n");
     }
@@ -65,8 +67,8 @@ int main() {
         int16_t flow;
         int16_t temperature;
         uint16_t status;
-        error = sfm_common_read_measurement(SFM3003_I2C_ADDRESS, &flow,
-                                            &temperature, &status);
+        error =
+            sfm_common_read_measurement(&sfm3003, &flow, &temperature, &status);
         printf(" %4i %4i %04x\n", flow, temperature, status);
     }
     return 0;

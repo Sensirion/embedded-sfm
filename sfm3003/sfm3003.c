@@ -34,3 +34,10 @@
 int16_t sfm3003_probe(void) {
     return sfm_common_probe(SFM3003_I2C_ADDRESS);
 }
+
+SfmConfig sfm3003_create(void) {
+    SfmConfig sfm_config = {
+        SFM3003_I2C_ADDRESS,
+    };
+    return sfm_config;
+}
