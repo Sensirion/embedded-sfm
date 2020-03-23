@@ -32,6 +32,6 @@
 #ifndef SFM_GIT_VERSION_H
 #define SFM_GIT_VERSION_H
 
-extern const char *SFM_DRV_VERSION_STR;
+extern const char* SFM_DRV_VERSION_STR;
 
 #endif /* SFM_GIT_VERSION_H */
