@@ -54,9 +54,15 @@ int16_t sfm_common_read_measurement(uint8_t i2c_address, int16_t* flow,
     if (error) {
         return error;
     }
-    *flow = (int16_t)buf[0];
-    *temperature = (int16_t)buf[1];
-    *status = buf[2];
+    if (flow) {
+        *flow = (int16_t)buf[0];
+    }
+    if (temperature) {
+        *temperature = (int16_t)buf[1];
+    }
+    if (status) {
+        *status = buf[2];
+    }
     return 0;
 }
 
