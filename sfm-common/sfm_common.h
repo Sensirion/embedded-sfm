@@ -72,6 +72,12 @@ int16_t sfm_common_start_continuous_measurement(
     uint8_t i2c_address, SfmCmdStartContinuousMeasurement measurement_cmd);
 
 /**
+ * Read results of a continuous measurement
+ */
+int16_t sfm_common_read_measurement(uint8_t i2c_address, int16_t* flow,
+                                    int16_t* temperature, uint16_t* status);
+
+/**
  * Stops a continuous measurement.
  */
 int16_t sfm_common_stop_continuous_measurement(uint8_t i2c_address);
