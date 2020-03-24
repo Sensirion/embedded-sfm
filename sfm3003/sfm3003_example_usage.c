@@ -70,5 +70,7 @@ int main() {
             sfm_common_read_measurement(&sfm3003, &flow, &temperature, &status);
         printf(" %4i %4i %04x\n", flow, temperature, status);
     }
+
+    sensirion_i2c_release();
     return 0;
 }
