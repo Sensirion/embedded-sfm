@@ -30,6 +30,7 @@
  */
 
 #include "sfm_common.h"
+#include "sensirion_i2c.h"
 
 #define SFM3003_I2C_ADDRESS 0x28
 

@@ -29,7 +29,6 @@
  * POSSIBILITY OF SUCH DAMAGE.
  */
 
-#include "sensirion_i2c.h"
 #include "sfm3003.h"
 #include <stdio.h>
 
