@@ -58,7 +58,7 @@ int main() {
     }
 
     error = sfm_common_start_continuous_measurement(
-        &sfm3003, SFM_CMD_START_CONTINUOUS_MEASUREMENT_GAS0);
+        &sfm3003, SFM3003_CMD_START_CONTINUOUS_MEASUREMENT_AIR);
     if (error) {
         printf("Failed to start measurement\n");
     }

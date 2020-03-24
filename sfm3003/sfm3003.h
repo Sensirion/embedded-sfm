@@ -33,6 +33,13 @@
 
 #define SFM3003_I2C_ADDRESS 0x28
 
+#define SFM3003_CMD_START_CONTINUOUS_MEASUREMENT_AIR \
+    SFM_CMD_START_CONTINUOUS_MEASUREMENT_GAS0
+#define SFM3003_CMD_START_CONTINUOUS_MEASUREMENT_O2 \
+    SFM_CMD_START_CONTINUOUS_MEASUREMENT_GAS1
+#define SFM3003_CMD_START_CONTINUOUS_MEASUREMENT_AIR_O2_MIX \
+    SFM_CMD_START_CONTINUOUS_MEASUREMENT_GAS_MIX_0
+
 /**
  * Detects if a sensor is connected by reading out the ID register.
  * If the sensor does not answer or if the answer is not the expected value,
