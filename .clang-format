@@ -9,4 +9,5 @@ AllowShortFunctionsOnASingleLine: false
 IndentCaseLabels: true
 SpacesBeforeTrailingComments: 2
 PointerAlignment: Left
+AlignEscapedNewlines: Left
 ...
