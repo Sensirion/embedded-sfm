@@ -100,6 +100,18 @@ int16_t sfm_common_read_scale_factor_offset_and_unit(
     return 0;
 }
 
+int16_t sfm_common_convert_flow_float(const SfmConfig* sfm_config,
+                                      int16_t flow_raw, float* flow) {
+    if (sfm_config->flow_scale == 0) {
+        return -1;
+    }
+
+    *flow =
+        (flow_raw - sfm_config->flow_offset) / (float)(sfm_config->flow_scale);
+
+    return 0;
+}
+
 int16_t sfm_common_start_continuous_measurement(
     SfmConfig* sfm_config, SfmCmdStartContinuousMeasurement measurement_cmd) {
 

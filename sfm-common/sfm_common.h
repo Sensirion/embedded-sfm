@@ -92,6 +92,14 @@ int16_t sfm_common_read_scale_factor_offset_and_unit(
     int16_t* flow_offset, uint16_t* unit);
 
 /**
+ * Convert the raw flow ticks to slm.
+ *
+ * @return  0 on success, an error code otherwise
+ */
+int16_t sfm_common_convert_flow_float(const SfmConfig* sfm_config,
+                                      int16_t flow_raw, float* flow);
+
+/**
  * Starts a continuous measurement with the given gas configuration.
  */
 int16_t sfm_common_start_continuous_measurement(
