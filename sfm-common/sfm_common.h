@@ -108,8 +108,10 @@ int16_t sfm_common_start_continuous_measurement(
 /**
  * Read results of a continuous measurement
  */
-int16_t sfm_common_read_measurement(const SfmConfig* sfm_config, int16_t* flow,
-                                    int16_t* temperature, uint16_t* status);
+int16_t sfm_common_read_measurement_raw(const SfmConfig* sfm_config,
+                                        int16_t* flow_raw,
+                                        int16_t* temperature_raw,
+                                        uint16_t* status);
 
 /**
  * Stops a continuous measurement.

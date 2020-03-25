@@ -125,18 +125,20 @@ int16_t sfm_common_start_continuous_measurement(
     return sensirion_i2c_write_cmd(sfm_config->i2c_address, measurement_cmd);
 }
 
-int16_t sfm_common_read_measurement(const SfmConfig* sfm_config, int16_t* flow,
-                                    int16_t* temperature, uint16_t* status) {
+int16_t sfm_common_read_measurement_raw(const SfmConfig* sfm_config,
+                                        int16_t* flow_raw,
+                                        int16_t* temperature_raw,
+                                        uint16_t* status) {
     uint16_t buf[3] = {};
     int16_t error = sensirion_i2c_read_words(sfm_config->i2c_address, buf, 3);
     if (error) {
         return error;
     }
-    if (flow) {
-        *flow = (int16_t)buf[0];
+    if (flow_raw) {
+        *flow_raw = (int16_t)buf[0];
     }
-    if (temperature) {
-        *temperature = (int16_t)buf[1];
+    if (temperature_raw) {
+        *temperature_raw = (int16_t)buf[1];
     }
     if (status) {
         *status = buf[2];

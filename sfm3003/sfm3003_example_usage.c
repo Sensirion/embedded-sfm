@@ -85,12 +85,12 @@ int main() {
     }
 
     for (;;) {
-        int16_t flow;
-        int16_t temperature;
+        int16_t flow_raw;
+        int16_t temperature_raw;
         uint16_t status;
-        error =
-            sfm_common_read_measurement(&sfm3003, &flow, &temperature, &status);
-        printf(" %4i %4i %04x\n", flow, temperature, status);
+        error = sfm_common_read_measurement_raw(&sfm3003, &flow_raw,
+                                                &temperature_raw, &status);
+        printf(" %4i %4i %04x\n", flow_raw, temperature_raw, status);
     }
 
     sensirion_i2c_release();
