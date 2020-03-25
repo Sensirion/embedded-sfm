@@ -29,9 +29,20 @@
  * POSSIBILITY OF SUCH DAMAGE.
  */
 
+#include "sensirion_common.h"
+#include "sensirion_i2c.h"
 #include "sfm_common.h"
 
 #define SFM3003_I2C_ADDRESS 0x28
+
+#define SFM3003_CMD_START_CONTINUOUS_MEASUREMENT_AIR \
+    SFM_CMD_START_CONTINUOUS_MEASUREMENT_GAS0
+#define SFM3003_CMD_START_CONTINUOUS_MEASUREMENT_O2 \
+    SFM_CMD_START_CONTINUOUS_MEASUREMENT_GAS1
+#define SFM3003_CMD_START_CONTINUOUS_MEASUREMENT_AIR_O2_MIX \
+    SFM_CMD_START_CONTINUOUS_MEASUREMENT_GAS_MIX_0
+
+#define SFM3003_SOFT_RESET_TIME_US 2000
 
 /**
  * Detects if a sensor is connected by reading out the ID register.
@@ -41,3 +52,8 @@
  * @return 0 if a sensor was detected
  */
 int16_t sfm3003_probe(void);
+
+/**
+ * Create a new SFM3003 instance
+ */
+SfmConfig sfm3003_create(void);

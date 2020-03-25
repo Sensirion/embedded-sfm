@@ -30,7 +30,76 @@
  */
 
 #include "sfm3003.h"
+#include <stdio.h>
 
 int main() {
+
+    const char* driver_version = sfm_common_get_driver_version();
+    if (driver_version) {
+        printf("SFM driver version %s\n", driver_version);
+    } else {
+        printf("fatal: Getting driver version failed\n");
+        return -1;
+    }
+
+    /* Initialize I2C bus */
+    sensirion_i2c_init();
+
+    /* Reset all I2C devices */
+    int16_t error = sensirion_i2c_general_call_reset();
+    if (error) {
+        printf("General call reset failed\n");
+    }
+    /* Wait for the SFM3003 to initialize */
+    sensirion_sleep_usec(SFM3003_SOFT_RESET_TIME_US);
+
+    while (sfm3003_probe()) {
+        printf("SFM sensor probing failed\n");
+    }
+
+    uint32_t product_number = 0;
+    uint8_t serial_number[8] = {};
+    error = sfm_common_read_product_identifier(SFM3003_I2C_ADDRESS,
+                                               &product_number, &serial_number);
+    if (error) {
+        printf("Failed to read product identifier\n");
+    } else {
+        printf("product: 0x%08x, serial: 0x", product_number);
+        for (size_t i = 0; i < 8; ++i) {
+            printf("%x", serial_number[i]);
+        }
+        printf("\n");
+    }
+
+    SfmConfig sfm3003 = sfm3003_create();
+
+    error = sfm_common_start_continuous_measurement(
+        &sfm3003, SFM3003_CMD_START_CONTINUOUS_MEASUREMENT_AIR);
+    if (error) {
+        printf("Failed to start measurement\n");
+    }
+
+    for (;;) {
+        int16_t flow_raw;
+        int16_t temperature_raw;
+        uint16_t status;
+        error = sfm_common_read_measurement_raw(&sfm3003, &flow_raw,
+                                                &temperature_raw, &status);
+        if (error) {
+            printf("Error while reading measurement\n");
+        } else {
+            float flow;
+            float temperature;
+            error = sfm_common_convert_flow_float(&sfm3003, flow_raw, &flow);
+            if (error) {
+                printf("Error while converting flow\n");
+            }
+            temperature = sfm_common_convert_temperature_float(temperature_raw);
+            printf(" Flow: %.3f (%4i) Temperature: %.2f (%4i) Status: %04x\n",
+                   flow, flow_raw, temperature, temperature_raw, status);
+        }
+    }
+
+    sensirion_i2c_release();
     return 0;
 }
