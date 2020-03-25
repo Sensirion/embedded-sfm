@@ -22,7 +22,7 @@ sfm_common_sources = ${sfm_common_dir}/sfm_git_version.h \
                      ${sfm_common_dir}/sfm_common.c
 
 sfm3003_sources = ${sensirion_common_sources} ${sfm_common_sources} \
-                ${sfm3003_dir}/sfm3003.h ${sfm3003_dir}/sfm3003.c
+                  ${sfm3003_dir}/sfm3003.h ${sfm3003_dir}/sfm3003.c
 
 hw_i2c_sources = ${hw_i2c_impl_src}
 sw_i2c_sources = ${sensirion_common_dir}/sw_i2c/sensirion_sw_i2c_gpio.h \
