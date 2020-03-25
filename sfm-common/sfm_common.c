@@ -112,6 +112,10 @@ int16_t sfm_common_convert_flow_float(const SfmConfig* sfm_config,
     return 0;
 }
 
+float sfm_common_convert_temperature_float(int16_t temperature_raw) {
+    return temperature_raw / 200.0f;
+}
+
 int16_t sfm_common_start_continuous_measurement(
     SfmConfig* sfm_config, SfmCmdStartContinuousMeasurement measurement_cmd) {
 

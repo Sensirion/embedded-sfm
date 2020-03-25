@@ -100,6 +100,13 @@ int16_t sfm_common_convert_flow_float(const SfmConfig* sfm_config,
                                       int16_t flow_raw, float* flow);
 
 /**
+ * Convert the raw temperature ticks to degree Celsius.
+ *
+ * @return  The temperature in degree Celsius
+ */
+float sfm_common_convert_temperature_float(int16_t temperature_raw);
+
+/**
  * Starts a continuous measurement with the given gas configuration.
  */
 int16_t sfm_common_start_continuous_measurement(
