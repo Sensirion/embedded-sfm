@@ -45,14 +45,22 @@ int main() {
     /* Initialize I2C bus */
     sensirion_i2c_init();
 
+    /* Reset all I2C devices */
+    int16_t error = sensirion_i2c_general_call_reset();
+    if (error) {
+        printf("General call reset failed\n");
+    }
+    /* Wait for the SFM3003 to initialize */
+    sensirion_sleep_usec(SFM3003_SOFT_RESET_TIME_US);
+
     while (sfm3003_probe()) {
         printf("SFM sensor probing failed\n");
     }
 
     uint32_t product_number = 0;
     uint8_t serial_number[8] = {};
-    int16_t error = sfm_common_read_product_identifier(
-        SFM3003_I2C_ADDRESS, &product_number, &serial_number);
+    error = sfm_common_read_product_identifier(SFM3003_I2C_ADDRESS,
+                                               &product_number, &serial_number);
     if (error) {
         printf("Failed to read product identifier\n");
     } else {
