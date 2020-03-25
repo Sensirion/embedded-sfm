@@ -90,7 +90,19 @@ int main() {
         uint16_t status;
         error = sfm_common_read_measurement_raw(&sfm3003, &flow_raw,
                                                 &temperature_raw, &status);
-        printf(" %4i %4i %04x\n", flow_raw, temperature_raw, status);
+        if (error) {
+            printf("Error while reading measurement\n");
+        } else {
+            float flow;
+            float temperature;
+            error = sfm_common_convert_flow_float(&sfm3003, flow_raw, &flow);
+            if (error) {
+                printf("Error while converting flow\n");
+            }
+            temperature = sfm_common_convert_temperature_float(temperature_raw);
+            printf(" Flow: %.3f (%4i) Temperature: %.2f (%4i) Status: %04x\n",
+                   flow, flow_raw, temperature, temperature_raw, status);
+        }
     }
 
     sensirion_i2c_release();
