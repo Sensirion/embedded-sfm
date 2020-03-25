@@ -36,6 +36,8 @@
 
 #define SFM_CMD_READ_PRODUCT_IDENTIFIER 0xE102
 
+#define SFM_CMD_READ_SCALE_FACTOR_OFFSET_AND_FLOW_UNIT 0x3661
+
 #define SFM_CMD_STOP_CONTINUOUS_MEASUREMENT 0x3FF9
 
 typedef enum {
@@ -52,6 +54,8 @@ typedef enum {
 
 typedef struct {
     uint8_t i2c_address;
+    int16_t flow_scale;
+    int16_t flow_offset;
 } SfmConfig;
 
 /**
@@ -78,11 +82,20 @@ int16_t sfm_common_read_product_identifier(uint8_t i2c_address,
                                            uint8_t (*serial_number)[8]);
 
 /**
+ * Read the scale factor, offset and unit for the given measurement type.
+ *
+ * @return  0 on success, an error code otherwise
+ */
+int16_t sfm_common_read_scale_factor_offset_and_unit(
+    const SfmConfig* sfm_config,
+    SfmCmdStartContinuousMeasurement measurement_cmd, int16_t* flow_scale,
+    int16_t* flow_offset, uint16_t* unit);
+
+/**
  * Starts a continuous measurement with the given gas configuration.
  */
 int16_t sfm_common_start_continuous_measurement(
-    const SfmConfig* sfm_config,
-    SfmCmdStartContinuousMeasurement measurement_cmd);
+    SfmConfig* sfm_config, SfmCmdStartContinuousMeasurement measurement_cmd);
 
 /**
  * Read results of a continuous measurement
@@ -93,6 +106,6 @@ int16_t sfm_common_read_measurement(const SfmConfig* sfm_config, int16_t* flow,
 /**
  * Stops a continuous measurement.
  */
-int16_t sfm_common_stop_continuous_measurement(const SfmConfig* sfm_config);
+int16_t sfm_common_stop_continuous_measurement(SfmConfig* sfm_config);
 
 #endif /* SFM_COMMON_H */

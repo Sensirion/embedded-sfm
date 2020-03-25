@@ -68,9 +68,48 @@ int16_t sfm_common_read_product_identifier(uint8_t i2c_address,
     return 0;
 }
 
-int16_t sfm_common_start_continuous_measurement(
+int16_t sfm_common_read_scale_factor_offset_and_unit(
     const SfmConfig* sfm_config,
-    SfmCmdStartContinuousMeasurement measurement_cmd) {
+    SfmCmdStartContinuousMeasurement measurement_cmd, int16_t* flow_scale,
+    int16_t* flow_offset, uint16_t* unit) {
+
+    uint16_t measurement_cmd_word = (uint16_t)measurement_cmd;
+
+    uint16_t buf[3];
+    int16_t error = sensirion_i2c_write_cmd_with_args(
+        sfm_config->i2c_address, SFM_CMD_READ_SCALE_FACTOR_OFFSET_AND_FLOW_UNIT,
+        &measurement_cmd_word, 1);
+    if (error) {
+        return error;
+    }
+    error =
+        sensirion_i2c_read_words(sfm_config->i2c_address, buf, ARRAY_SIZE(buf));
+
+    if (error) {
+        return error;
+    }
+    if (flow_scale) {
+        *flow_scale = (int16_t)buf[0];
+    }
+    if (flow_offset) {
+        *flow_offset = (int16_t)buf[1];
+    }
+    if (unit) {
+        *unit = buf[2];
+    }
+    return 0;
+}
+
+int16_t sfm_common_start_continuous_measurement(
+    SfmConfig* sfm_config, SfmCmdStartContinuousMeasurement measurement_cmd) {
+
+    int16_t error = sfm_common_read_scale_factor_offset_and_unit(
+        sfm_config, measurement_cmd, &sfm_config->flow_scale,
+        &sfm_config->flow_offset, NULL);
+    if (error) {
+        return error;
+    }
+
     return sensirion_i2c_write_cmd(sfm_config->i2c_address, measurement_cmd);
 }
 
@@ -93,7 +132,9 @@ int16_t sfm_common_read_measurement(const SfmConfig* sfm_config, int16_t* flow,
     return 0;
 }
 
-int16_t sfm_common_stop_continuous_measurement(const SfmConfig* sfm_config) {
+int16_t sfm_common_stop_continuous_measurement(SfmConfig* sfm_config) {
+    sfm_config->flow_scale = 0;
+    sfm_config->flow_offset = 0;
     return sensirion_i2c_write_cmd(sfm_config->i2c_address,
                                    SFM_CMD_STOP_CONTINUOUS_MEASUREMENT);
 }
