@@ -73,11 +73,6 @@ int main() {
 
     SfmConfig sfm3003 = sfm3003_create();
 
-    error = sfm_common_stop_continuous_measurement(&sfm3003);
-    if (error) {
-        printf("Failed to stop previous measurement\n");
-    }
-
     error = sfm_common_start_continuous_measurement(
         &sfm3003, SFM3003_CMD_START_CONTINUOUS_MEASUREMENT_AIR);
     if (error) {
