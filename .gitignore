@@ -2,6 +2,8 @@
 /release
 /sfm3003/sfm3003_example_usage
 /sfm3003/user_config.inc
+/sfm3019/sfm3019_example_usage
+/sfm3019/user_config.inc
 /sfm-common/sfm_git_version.c
 
 # Prerequisites
