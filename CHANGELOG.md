@@ -6,3 +6,4 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [Unreleased]
 
  * [`added`]    SFM3003: Initial support
+ * [`added`]    SFM3019: Initial support
