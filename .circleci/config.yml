@@ -4,8 +4,7 @@ jobs:
   build:
 
     docker:
-        - image: gcc:5.5
-
+      - image: sensirion/embedded-ci:1.0.0
     steps:
 
       - checkout
@@ -13,8 +12,6 @@ jobs:
       - run:
           name: update common repo
           command: git submodule update --init
-      - run: apt update
-      - run: apt install -y zip
       - run: make prepare
       - run: make
       - run: make clean
@@ -36,14 +33,12 @@ jobs:
 
   deploy:
     docker:
-      - image: gcc:5.5
+      - image: sensirion/embedded-ci:1.0.0
     steps:
       - checkout
       - run:
           name: update common repo
           command: git submodule update --init
-      - run: apt update
-      - run: apt install -y zip
       - run: make release
       - run:
           name: Move zip files to artifact directory
