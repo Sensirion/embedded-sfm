@@ -5,6 +5,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+ * `[changed]`  Wait for first measurements to be ready (#14)
+
 ## [0.1.0] - 2020-03-26
 
  * [`added`]    SFM3003: Initial support
