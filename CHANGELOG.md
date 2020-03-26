@@ -5,5 +5,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.1.0] - 2020-03-26
+
  * [`added`]    SFM3003: Initial support
  * [`added`]    SFM3019: Initial support
+
+[Unreleased]: https://github.com/Sensirion/embedded-sfm/compare/0.1.0...master
+[0.1.0]: https://github.com/Sensirion/embedded-sfm/releases/tag/0.1.0
