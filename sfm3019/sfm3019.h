@@ -44,6 +44,10 @@
 
 #define SFM3019_SOFT_RESET_TIME_US 2000
 
+#define SFM3019_MEASUREMENT_INITIALIZATION_TIME_US 12000
+
+#define SFM3019_MEASUREMENT_WARM_UP_TIME_US 30000
+
 /**
  * Detects if a sensor is connected by reading out the ID register.
  * If the sensor does not answer or if the answer is not the expected value,
