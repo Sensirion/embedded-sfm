@@ -11,8 +11,10 @@ PAGE](https://github.com/Sensirion/embedded-sfm/releases)***
 ```
 
 ## Repository content
+
 * embedded-common (submodule repository for the common embedded driver HAL)
 * sfm3003 (SFM3003 driver)
+* sfm3019 (SFM3019 driver)
 * sfm-common (functionality common across SFM sensors)
 
 ## Collecting resources
