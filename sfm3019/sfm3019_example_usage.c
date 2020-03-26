@@ -79,6 +79,10 @@ int main() {
         printf("Failed to start measurement\n");
     }
 
+    /* Wait for the first measurement to be available. Wait for
+     * SFM3019_MEASUREMENT_WARM_UP_TIME_US instead for more reliable results */
+    sensirion_sleep_usec(SFM3019_MEASUREMENT_INITIALIZATION_TIME_US);
+
     for (;;) {
         int16_t flow_raw;
         int16_t temperature_raw;
