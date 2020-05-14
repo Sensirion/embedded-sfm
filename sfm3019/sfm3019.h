@@ -29,6 +29,9 @@
  * POSSIBILITY OF SUCH DAMAGE.
  */
 
+#ifndef SFM3019_H
+#define SFM3019_H
+
 #include "sensirion_common.h"
 #include "sensirion_i2c.h"
 #include "sfm_common.h"
@@ -61,3 +64,5 @@ int16_t sfm3019_probe(void);
  * Create a new SFM3019 instance
  */
 SfmConfig sfm3019_create(void);
+
+#endif /* SFM3019_H */

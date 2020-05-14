@@ -29,6 +29,9 @@
  * POSSIBILITY OF SUCH DAMAGE.
  */
 
+#ifndef SFM3003_H
+#define SFM3003_H
+
 #include "sensirion_common.h"
 #include "sensirion_i2c.h"
 #include "sfm_common.h"
@@ -61,3 +64,5 @@ int16_t sfm3003_probe(void);
  * Create a new SFM3003 instance
  */
 SfmConfig sfm3003_create(void);
+
+#endif /* SFM3003_H */
