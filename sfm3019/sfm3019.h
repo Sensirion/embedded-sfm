@@ -36,6 +36,10 @@
 #include "sensirion_i2c.h"
 #include "sfm_common.h"
 
+#ifdef __cplusplus
+extern "C" {
+#endif /* __cplusplus */
+
 #define SFM3019_I2C_ADDRESS 0x2E
 
 #define SFM3019_CMD_START_CONTINUOUS_MEASUREMENT_O2 \
@@ -64,5 +68,9 @@ int16_t sfm3019_probe(void);
  * Create a new SFM3019 instance
  */
 SfmConfig sfm3019_create(void);
+
+#ifdef __cplusplus
+}
+#endif /* __cplusplus */
 
 #endif /* SFM3019_H */

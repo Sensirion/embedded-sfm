@@ -34,6 +34,10 @@
 
 #include "sensirion_arch_config.h"
 
+#ifdef __cplusplus
+extern "C" {
+#endif /* __cplusplus */
+
 #define SFM_CMD_READ_PRODUCT_IDENTIFIER 0xE102
 
 #define SFM_CMD_READ_SCALE_FACTOR_OFFSET_AND_FLOW_UNIT 0x3661
@@ -163,5 +167,9 @@ int16_t sfm_common_read_measurement_raw(const SfmConfig* sfm_config,
  * @return  0 on success, an error code otherwise
  */
 int16_t sfm_common_stop_continuous_measurement(SfmConfig* sfm_config);
+
+#ifdef __cplusplus
+}
+#endif /* __cplusplus */
 
 #endif /* SFM_COMMON_H */
