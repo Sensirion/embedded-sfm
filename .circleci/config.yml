@@ -4,7 +4,7 @@ jobs:
   build:
 
     docker:
-      - image: sensirion/embedded-ci:1.0.0
+      - image: sensirion/embedded-ci:2.0.0
     steps:
 
       - checkout
@@ -33,7 +33,7 @@ jobs:
 
   deploy:
     docker:
-      - image: sensirion/embedded-ci:1.0.0
+      - image: sensirion/embedded-ci:2.0.0
     steps:
       - checkout
       - run:
