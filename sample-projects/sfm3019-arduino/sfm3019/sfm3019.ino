@@ -7,7 +7,7 @@ void setup() {
     Serial.begin(9600);
     const char* driver_version = sfm_common_get_driver_version();
     if (driver_version) {
-        Serial.print("SFM driver version: ");
+        Serial.print("\nSFM driver version: ");
         Serial.println(driver_version);
     } else {
         Serial.println("fatal: Getting driver version failed");
@@ -38,7 +38,7 @@ void setup() {
     } else {
         Serial.print("product: 0x");
         Serial.print(product_number, HEX);
-        Serial.print("serial: 0x");
+        Serial.print(" serial: 0x");
         for (size_t i = 0; i < 8; ++i) {
             Serial.print(serial_number[i], HEX);
         }
@@ -73,7 +73,7 @@ void loop() {
     error = sfm_common_read_measurement_raw(&sfm3019, &flow_raw,
                                             &temperature_raw, &status);
     if (error) {
-        Serial.println("Error while reading measurement");
+        Serial.println("Error while reading measurement.");
     } else {
         float flow;
         float temperature;
@@ -82,12 +82,12 @@ void loop() {
             Serial.println("Error while converting flow");
         }
         temperature = sfm_common_convert_temperature_float(temperature_raw);
-        Serial.print(" Flow: ");
+        Serial.print("Flow:");
         Serial.print(flow);
-        Serial.print(" Temperature: ");
+        Serial.print("\tTemperature:");
         Serial.print(temperature);
-        Serial.print(" Status: ");
-        Serial.print(status, HEX);
+        Serial.print("\tStatus: ");
+        Serial.println(status, HEX);
     }
 
 }
