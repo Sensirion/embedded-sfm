@@ -16,7 +16,7 @@ void setup() {
     sensirion_i2c_init();
 
     /* Reset all I2C devices */
-    int16_t error = sensirion_i2c_general_call_reset();
+    error = sensirion_i2c_general_call_reset();
     if (error) {
         Serial.println("General call reset failed");
     }
@@ -62,9 +62,11 @@ void setup() {
 
 void loop() {
 
-    // do nothing if there were errors during setup
+    // Call setup again if there were errors
     if (error) {
-      return;
+        sensirion_sleep_usec(100000);
+        error = 0;
+        setup();
     }
 
     int16_t flow_raw;
@@ -74,12 +76,14 @@ void loop() {
                                             &temperature_raw, &status);
     if (error) {
         Serial.println("Error while reading measurement.");
+        return;
     } else {
         float flow;
         float temperature;
         error = sfm_common_convert_flow_float(&sfm3019, flow_raw, &flow);
         if (error) {
             Serial.println("Error while converting flow");
+            return;
         }
         temperature = sfm_common_convert_temperature_float(temperature_raw);
         Serial.print("Flow:");
