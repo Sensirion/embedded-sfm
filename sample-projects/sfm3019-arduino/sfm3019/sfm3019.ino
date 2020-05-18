@@ -11,7 +11,6 @@ void setup() {
         Serial.println(driver_version);
     } else {
         Serial.println("fatal: Getting driver version failed");
-        error = -1;
     }
     sensirion_i2c_init();
 
@@ -57,7 +56,6 @@ void setup() {
     /* Wait for the first measurement to be available. Wait for
      * SFM3019_MEASUREMENT_WARM_UP_TIME_US instead for more reliable results */
     sensirion_sleep_usec(SFM3019_MEASUREMENT_INITIALIZATION_TIME_US);
-
 }
 
 void loop() {
