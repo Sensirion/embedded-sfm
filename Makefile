@@ -1,4 +1,5 @@
 drivers=sfm3003 sfm3019
+sample-projects=sfm3019-arduino
 clean_drivers=$(foreach d, $(drivers), clean_$(d))
 release_drivers=$(foreach d, $(drivers), release/$(d))
 release_sample_projects=$(foreach s, $(sample-projects), release/$(s))
@@ -39,7 +40,18 @@ $(release_drivers): sfm-common/sfm_git_version.c
 	cd release && zip -r "$${pkgname}.zip" "$${pkgname}" && cd - && \
 	ln -sfn $${pkgname} $@
 
-release: clean $(release_drivers)
+$(release_sample_projects):
+	export rel=$@ && \
+	export sample_project=$${rel#release/} && \
+	export tag="$$(git describe --always --dirty)" && \
+	export pkgname="$${sample_project}-sample-project-$${tag}" && \
+	export pkgdir="release/$${pkgname}" && \
+	rm -rf "$${pkgdir}" && mkdir -p "$${pkgdir}" && \
+	sample-projects/$${sample_project}/prepare_release.sh  "$${pkgdir}" && \
+	cd release && zip -r "$${pkgname}.zip" "$${pkgname}" && cd - && \
+	ln -sfn $${pkgname} release/$${sample_project}
+
+release: clean $(release_drivers) $(release_sample_projects)
 
 $(clean_drivers):
 	export rel=$@ && \
