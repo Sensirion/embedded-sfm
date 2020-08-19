@@ -107,7 +107,7 @@ int16_t sfm_common_convert_flow_float(const SfmConfig* sfm_config,
     }
 
     *flow =
-        (flow_raw - sfm_config->flow_offset) / (float)(sfm_config->flow_scale);
+        ((int32_t)flow_raw - (int32_t)sfm_config->flow_offset) / (float)(sfm_config->flow_scale);
 
     return 0;
 }
