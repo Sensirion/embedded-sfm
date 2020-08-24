@@ -5,6 +5,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.1.2] - 2020-08-24
+
+ * `[fixed]` Fix overflow bug with high flow rates (#20)
+
 ## [0.1.1] - 2020-06-02
 
  * `[changed]`  Wait for first measurements to be ready (#14)
@@ -19,3 +23,4 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 [Unreleased]: https://github.com/Sensirion/embedded-sfm/compare/0.1.1...master
 [0.1.1]: https://github.com/Sensirion/embedded-sfm/compare/0.1.0...0.1.1
 [0.1.0]: https://github.com/Sensirion/embedded-sfm/releases/tag/0.1.0
+[0.1.2]: https://github.com/Sensirion/embedded-sfm/compare/0.1.1...0.1.2
