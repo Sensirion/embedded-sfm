@@ -5,6 +5,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+ * [`changed`] Makefile to only include needed files from embedded-common
+
 ## [0.1.2] - 2020-08-24
 
  * `[fixed]` Fix overflow bug with high flow rates (#20)
