@@ -1,11 +1,12 @@
 #include "sensirion_test_setup.h"
 #include "sfm3019.h"
 
-TEST_GROUP(SFM3019) {
+TEST_GROUP (SFM3019) {
     void setup() {
         sensirion_i2c_init();
         int16_t error = sensirion_i2c_mux_set_single_channel(0x72, 2);
-        CHECK_EQUAL_TEXT(0, error, "sensirion_i2c_mux_set_single_channel(0x72, 2)");
+        CHECK_EQUAL_TEXT(0, error,
+                         "sensirion_i2c_mux_set_single_channel(0x72, 2)");
         error = sensirion_i2c_general_call_reset();
         CHECK_EQUAL_TEXT(0, error, "sensirion_i2c_general_call_reset");
         /* Wait for the SFM3019 to initialize */
@@ -17,21 +18,20 @@ TEST_GROUP(SFM3019) {
     }
 };
 
-TEST(SFM3019, probe) {
+TEST (SFM3019, probe) {
     int16_t error = sfm3019_probe();
     CHECK_EQUAL_TEXT(0, error, "probe failed");
 }
 
-
-TEST(SFM3019, read_product_identifier) {
+TEST (SFM3019, read_product_identifier) {
     uint32_t product_number = 0;
     uint8_t serial_number[8] = {};
     int16_t error = sfm_common_read_product_identifier(
-            SFM3019_I2C_ADDRESS, &product_number, &serial_number);
+        SFM3019_I2C_ADDRESS, &product_number, &serial_number);
     CHECK_EQUAL(0, error);
 }
 
-TEST(SFM3019, measurement) {
+TEST (SFM3019, measurement) {
     SfmConfig sfm3019 = sfm3019_create();
 
     int16_t error = sfm_common_start_continuous_measurement(
