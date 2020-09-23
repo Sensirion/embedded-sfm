@@ -5,6 +5,10 @@
 /sfm3019/sfm3019_example_usage
 /sfm3019/user_config.inc
 /sfm-common/sfm_git_version.c
+i2c-mux-testbed/
+tests/sfm3019-test-hw_i2c
+tests/sfm3019-test-sw_i2c
+
 
 # Prerequisites
 *.d
