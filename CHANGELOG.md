@@ -6,6 +6,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [Unreleased]
 
  * [`changed`] Makefile to only include needed files from embedded-common
+ * [`changed`] Updated embedded-common to 0.1.0 to improve compatibility when
+               using multiple embedded drivers
 
 ## [0.1.2] - 2020-08-24
 
