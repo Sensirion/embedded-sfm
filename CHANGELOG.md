@@ -5,6 +5,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.1.3] - 2020-12-14
+
  * [`changed`] Makefile to only include needed files from embedded-common
  * [`changed`] Updated embedded-common to 0.1.0 to improve compatibility when
                using multiple embedded drivers
@@ -24,7 +26,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
  * [`added`]    SFM3003: Initial support
  * [`added`]    SFM3019: Initial support
 
-[Unreleased]: https://github.com/Sensirion/embedded-sfm/compare/0.1.1...master
+[Unreleased]: https://github.com/Sensirion/embedded-sfm/compare/0.1.3...master
+[0.1.3]: https://github.com/Sensirion/embedded-sfm/compare/0.1.2...0.1.3
+[0.1.2]: https://github.com/Sensirion/embedded-sfm/compare/0.1.1...0.1.2
 [0.1.1]: https://github.com/Sensirion/embedded-sfm/compare/0.1.0...0.1.1
 [0.1.0]: https://github.com/Sensirion/embedded-sfm/releases/tag/0.1.0
 [0.1.2]: https://github.com/Sensirion/embedded-sfm/compare/0.1.1...0.1.2
