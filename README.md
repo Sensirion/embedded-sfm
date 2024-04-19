@@ -1,4 +1,9 @@
-# embedded-sfm [![CircleCI](https://circleci.com/gh/Sensirion/embedded-sfm.svg?style=shield)](https://circleci.com/gh/Sensirion/embedded-sfm) [![GitHub license](https://img.shields.io/badge/license-BSD3-blue.svg)](https://raw.githubusercontent.com/Sensirion/embedded-sfm/master/LICENSE)
+# embedded-sfm [![GitHub license](https://img.shields.io/badge/license-BSD3-blue.svg)](https://raw.githubusercontent.com/Sensirion/embedded-sfm/master/LICENSE)
+
+Note: This repository is deprecated. Please use our new driver for flow sensors
+https://github.com/Sensirion/embedded-i2c-sfm-sf06
+
+
 This repository contains the embedded driver sources for Sensirion's SFM product
 line.
 
